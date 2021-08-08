@@ -1,0 +1,72 @@
+<!--
+great job one problem you login with a user name and a password 
+not a email and a password.
+-->
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="day.css">
+        <link rel="stylesheet" href="night.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        </head>
+    <body>
+        <div class = "display">
+            <div class = "center">
+                <h1>Login</h1>
+                <div id="time"></div>
+                <form action="/login" method="post">
+                    <div>
+                        <div>
+                            <label for="email">Your Username: </label><br>
+                            <input name="username" id="email" class="text-input"><br><br
+                          required> 
+                        </div>
+                        <div>
+                            <label for="password">Your Password: </label><br>
+                            <input name="password" id="password"><br><br>
+                        </div>
+                       </div>
+                    </div>
+                    <button type="submit" class="butn">Login</button>
+                </form>
+         <a href="/signup">
+   <input type="button" value="signup" class="butn" />
+</a>
+<br>
+<a href="/home">
+    <input type="button" value="Homepage" class="butn" />
+</a>
+            </div>
+        </div>
+   <script>
+document.getElementById("time").innerHTML = formatAMPM();
+
+function formatAMPM() {
+var d = new Date(),
+    minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
+    hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
+    ampm = d.getHours() >= 12 ? 'pm' : 'am',
+    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
+}
+</script>
+
+
+<script type="text/javascript">
+    var currentTime = new Date().getHours();
+    if (document.body) {
+        if (7 <= currentTime && currentTime < 20) {
+            document.body.style.backgroundColor = "lightgreen";
+        }
+        else {
+            document.body.style.backgroundColor = "lightblue";
+        }
+    }
+    </script>
+
+    </body>
+   
+</html>

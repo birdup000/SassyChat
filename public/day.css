@@ -1,0 +1,67 @@
+.center {
+  margin: auto;
+  border: 2dpx solid #314141;
+  border-radius: 15px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: auto;
+    background-color: lightblue;
+
+}
+
+label {
+  color: #314141;
+}
+
+input {
+  border: 2px solid black;
+  border-radius: 15px;
+  height: auto;
+  width: auto;
+  background-color: lightgray;
+   font-size: 150%;
+   
+
+}
+
+.summit {
+  background-color: #8490da;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+
+.summit:hover {
+border-radius: 15px;
+background-color: #3e3b8a;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+
+}
+ 
+ .butn {
+  background-color: #8490da;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+ .butn:hover {
+  background-color: #3e3b8a;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+body {
+  
+  font-size: 150%;
+  height:auto;
+  width:auto;
+
+}
+
+
