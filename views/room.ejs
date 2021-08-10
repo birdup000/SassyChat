@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
     <!-- Set the ROOM_ID variable to the roomId that is passed in by server.js -->
     <script>
         const ROOM_ID = "<%= roomId %>"
@@ -12,7 +13,7 @@
     <script src = "/socket.io/socket.io.js" defer></script>
     <!-- Load in script.js, our client-side script -->
     <script src = "script.js" defer></script>
-    <title>Video App</title>
+    <title>Calling Portion</title>
     <!-- Make a grid of 300x300 videos  -->
     <style>
         #video-grid {
@@ -28,7 +29,7 @@
     </style>
 </head>
 <body>
-    <!-- Make our video grid -->
+    <!-- //video grid -->
     <div id="video-grid"></div>
 </body>
 </html>
