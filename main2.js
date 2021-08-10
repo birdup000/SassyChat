@@ -8,7 +8,7 @@ const {v4: uuidV4} = require('uuid')
 app.set('view engine', 'ejs') // Tell Express we are using EJS
 app.use(express.static('public')) // Tell express to pull the client script from the public folder
 
-// If they join the base link, generate a random UUID and send them to a new room with said UUID
+// If they join the link, generate a random UUID and send them to a new room with said UUID
 app.get('/', (req, res) => {
     res.redirect(`/${uuidV4()}`)
 })
@@ -30,4 +30,4 @@ io.on('connection', socket => {
     })
 })
 
-server.listen(3000) // Run the server on the 3000 port
+server.listen(8080) // Run the server on the 3000 port
