@@ -42,5 +42,6 @@ video.srcObject = stream;
 video.addEventListener("loadedmetadata", () => {
 video.play();
 videoGrid.append(video);
+
 });
 };
