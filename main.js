@@ -63,7 +63,9 @@ app.get('/signup', (req, res) => {
   res.render("signup")  
 })
 
-
+app.get('/dashboard', (req, res) =>{
+res.render("dashboard")
+})
 
 /// set it to here this chat file when you it loggs in
 app.get('/chat', (req, res) =>{
@@ -93,7 +95,9 @@ app.post("/signup", (req, res) => {
 })
 
 
-
+app.use(function (req,res,next){
+	res.status(404).render("404");
+});
 
 const botName = 'Chat Bot';
 
