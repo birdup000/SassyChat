@@ -1,9 +1,8 @@
-//TODO 
-//1. fix code
 const http = require('http');
 const express = require('express')
 const app = express();
 const path = require('path')
+const {v4: uuidV4} = require('uuid')
 var port = 8080;
 
 
@@ -95,9 +94,9 @@ app.post("/signup", (req, res) => {
 })
 
 
-app.use(function (req,res,next){
-	res.status(404).render("404");
-});
+///app.use(function (req,res,next){
+///	res.status(404).render("404");
+//});
 
 const botName = 'Chat Bot';
 
@@ -151,6 +150,41 @@ io.on('connection', socket => {
     }
   });
 });
+
+
+
+
+
+
+//video chatting merge
+
+
+// If they join the link, generate a random UUID and send them to a new room with said UUID
+app.get('/videochat', (req, res) => {
+  res.redirect(`/${uuidV4()}`)
+})
+// If they join a specific room, then render that room
+app.get('/:room', (req, res) => {
+  res.render('room', {roomId: req.params.room})
+})
+// When someone connects to the server
+io.on('connection', socket => {
+  // When someone attempts to join the room
+  socket.on('join-room', (roomId, userId) => {
+      socket.join(roomId)  // Join the room
+      socket.broadcast.emit('user-connected', userId) // Tell everyone else in the room that we joined
+      
+      // Communicate the disconnection
+      socket.on('disconnect', () => {
+          socket.broadcast.emit('user-disconnected', userId)
+      })
+  })
+})
+
+
+
+
+
 
 const PORT = process.env.PORT || 8080
 
