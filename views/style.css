@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 :root {
-	--dark-color-a: #000000;
+	--dark-color-a: red;
 	--dark-color-b: #7386ff;
 	--light-color: #e6e9ff;
 	--success-color: #5cb85c;
@@ -42,14 +42,14 @@ a {
 
 .chat-container {
 	max-width: 1100px;
-	background: #fff;
+	background: lightseagreen;
 	margin: 30px auto;
 	overflow: hidden;
 }
 
 .chat-header {
 	background: var(--dark-color-a);
-	color: #fff;
+	color: white;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	padding: 15px;
@@ -65,7 +65,7 @@ a {
 
 .chat-sidebar {
 	background: var(--dark-color-b);
-	color: #fff;
+	color: darkblue;
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
 }
@@ -108,7 +108,7 @@ a {
 }
 
 .chat-messages .message .meta span {
-	color: #777;
+	color: purple;
 }
 
 .chat-form-container {
@@ -131,7 +131,7 @@ a {
 .join-container {
 	max-width: 500px;
 	margin: 80px auto;
-	color: #fff;
+	color: black;
 }
 
 .join-header {

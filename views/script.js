@@ -54,4 +54,36 @@ function addVideoStream(video, stream) {
     videoGrid.append(video) // Append video element to videoGrid
 }
 
- 
+ /// 
+
+ MediaStreamTrack.getSources(function (media_sources) {
+    for (var i = 0; i < media_sources.length; i++) {
+        var media_source = media_sources[i];
+        var constraints = {};
+
+        // if audio device
+        if (media_source.kind == 'audio') {
+            constraints.audio = {
+                optional: [{
+                    sourceId: media_source.id
+                }]
+            };
+        }
+
+        // if video device
+        if (media_source.kind == 'video') {
+            constraints.video = {
+                optional: [{
+                    sourceId: media_source.id
+                }]
+            };
+        }
+
+
+        // invoke getUserMedia to capture this device
+        navigator.webkitGetUserMedia(constraints, function (stream) {
+            console.log(stream.id, stream);
+        }, console.error);
+    }
+});
+
