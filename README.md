@@ -1,5 +1,9 @@
 # SassyFixxeChat
  
-This project is still under construction so bugs are still a thing here.
+This project actively being updated every once a week. 
+Please let me know if there are any issues within the project in the issues section of the github page. 
 
-go to wiki for instructions https://github.com/braden644/SassyFixxeChat/wiki
+
+go to the wiki page for instructions https://github.com/braden644/SassyFixxeChat/wiki
+
+Thank you for checking out my project!!
