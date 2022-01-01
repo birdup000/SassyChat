@@ -66,7 +66,7 @@ app.get('/dashboard', (req, res) =>{
 res.render("dashboard")
 })
 
-/// set it to here this chat file when you it loggs in
+/// set it to here this chat file when you it logs in
 app.get('/chat', (req, res) =>{
  res.render("whenloggedin")
 })
@@ -90,7 +90,7 @@ app.post("/signup", (req, res) => {
   let password = req.body["password"];
   let email = req.body["email"];
   //chack user login
-  console.log(`\x1b[42mNEW LOGIN REQUEST\x1b[0m: (${username} | ${password} | ${email})`)
+  console.log(`\x1b[42mNEW SIGN UP REQUEST\x1b[0m: (${username} | ${password} | ${email})`)
 })
 
 

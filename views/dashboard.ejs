@@ -5,13 +5,29 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
       <link rel="shortcut icon" href="bees.ico" type="image/x-icon">
      <link rel="stylesheet" href="dashboard.css">
+        
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        <script type="text/javascript">
+        
+        $(document).ready(function(){
+        
+            $('#button').click(function(e) {  
+                var inputvalue = $("#input").val();
+                window.location.replace(" http://localhost:8080/"+inputvalue);
+        
+            });
+        });
+        </script> 
         <title>Dashboard</title>
       </head>
 <body>
     
    <h2>Dashboard</h2>
-   <a href="/home" style="color:black;border-top: green;"><b>Home</b></a>
-     <hr> 
+   <div class="topnav">
+   <a href="/home"><b>Home</b></a>
+  </div>  
+   <hr> 
      <p style="color:white; background-color: darkred;">Under development stage dashboard temp for now until signup and login features get working.Thank you for using Sassy Chat</p>
      <p style="background-color: chocolate;"><b>Welcome to the Dashboard where you can do your video calls from here
     press the Make Video call button to launch into a new video call room!!
@@ -19,11 +35,40 @@
     
     <form method="get" action="http://localhost:8080/chat"><button type="submit">Text Chat</button></form>
     <p style="background-color: chocolate;">Video Calling works!! Please connect camera first for the video to work.</p>
-    Join room by entering thecode and then press the submit button
-   <input type="text" id="roomurl"/>
-   
-<a href = "javascript:;" onclick = "this.href='http://localhost:8080/' + document.getElementById('roomurl').value">Join Video Call (Blank box will take you back home)</a>
+    Join room by entering the code and then press the submit button.
+   <p>Skip</p>
+    <!-- <input type="url" required id="roomurl"/> -->
+
+   <form>
+    <input id="roomurl" name="http://localhost:8080/" type="text" required>
+    <button>Submit</button>
+  </form>
+
+  <form method="get" target="_blank">
+
+    <p>
   
+      Room Code (Room code only): <input type="text" inputmode="text"  pattern="value text-input">
+  
+      <input type="submit" value="Send data">
+  S
+    </p>
+  
+  
+  </form>
+
+<form target="button">
+  <input type="text" value="roomurl" id="button" required> 
+  <button type="button" id="button">Click Me!</button>
+</form>
+<p>Goto</p>
+<br>
+<p>Input Room code here</p>  
+
+<a href = "javascript:;" onclick = "this.href='http://localhost:8080/' + document.getElementById('roomurl').value">Join Video Call (Blank box will take you back home)</a>
+
+  
+   
 <form method="get" action="http://localhost:8080/videochat" style="background-color: olivedrab;"><button type="submit">Video Chat</button></form>
     <p style="background-color: chocolate;">Audio Chat Coming soon!!</p>
     <form method="get" action="http://localhost:8080/404/"><button type="submit">Audio Chat</button></form>

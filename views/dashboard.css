@@ -3,7 +3,21 @@ background-color:  lightseagreen;
 
 }
 
-.button
-{
-    color:green;
-}
+.topnav a {
+    color: #dcdcdc;
+    text-align: center;
+    background-color: darkmagenta;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    -webkit-box-shadow: 5px 5px 5px rgba(66, 153, 8, 0.712);
+            box-shadow: 5px 5px 5px rgba(66, 153, 8, 0.712);
+    width: 60px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: darkmagenta;
+    color: black;
+  }
+  
