@@ -16,19 +16,21 @@ p {
 .topnav {
   background-color: #333;
   overflow: hidden;
+  text-align: center;
+
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-  -webkit-box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.712);
-          box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.712);
+  -webkit-box-shadow: 5px 5px 5px rgba(68, 196, 132, 0.712);
+          box-shadow: 5px 5px 5px rgba(68, 196, 132, 0.712);
   width: 80px;
+  display: inline-block;
 }
 
 /* Change the color of links on hover */
@@ -46,4 +48,4 @@ p {
 .content {
   color: #4b4949;
 }
-/*# sourceMappingURL=style.css.map */
+

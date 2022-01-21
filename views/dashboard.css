@@ -1,10 +1,12 @@
 body{
-background-color:  lightseagreen;
-
+background-color:  rgb(132, 196, 192);
+font-weight: bolder;
 }
 
 .topnav a {
-    color: #dcdcdc;
+  display: inline-block;
+   
+  color: #dcdcdc;
     text-align: center;
     background-color: darkmagenta;
     padding: 10px 10px;
@@ -21,3 +23,13 @@ background-color:  lightseagreen;
     color: black;
   }
   
+p{
+padding: 5px;
+
+}
+
+h3 {
+background: slategray;
+background-color: slategray;
+
+}

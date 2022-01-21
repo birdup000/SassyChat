@@ -1,5 +1,8 @@
 body {
     background-color: lightblue;
+    font-size: 150%;
+  height:auto;
+  width:auto;
   }
 
   /* The side navigation menu */
@@ -51,3 +54,4 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+

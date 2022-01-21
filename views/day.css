@@ -26,6 +26,7 @@ input {
 }
 
 .summit {
+  border-radius: 15px;
   background-color: #8490da;
   width: auto;
   height: auto;
@@ -43,25 +44,26 @@ background-color: #3e3b8a;
 }
  
  .butn {
+  border-radius: 15px;
   background-color: #8490da;
-  width: auto;
-  height: auto;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
 
  .butn:hover {
+  border-radius: 15px;
   background-color: #3e3b8a;
-  width: auto;
-  height: auto;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
 
 body {
   
-  font-size: 150%;
+  font-size: auto;
   height:auto;
   width:auto;
 
 }
-
 

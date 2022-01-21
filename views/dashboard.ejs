@@ -10,16 +10,16 @@
       </head>
 <body>
     
-   <h2>Dashboard</h2>
+   <h2 style=" background-color: slategray; font-weight: bolder; text-align: center;">Dashboard</h2>
    <div class="topnav">
    <a href="/home"><b>Home</b></a>
   </div>  
    <hr> 
-     <p style="color:white; background-color: darkred;">Under development stage dashboard temp for now until signup and login features get working.Thank you for using Sassy Chat</p>
-     <p style="background-color: chocolate;"><b>Welcome to the Dashboard where you can do your video calls and Text chat!!
+     <p style="color:white; background-color: darkred;">Under development stage dashboard temporarily is available for now until signup and login features get working.Thank you for using Sassy Chat. This page will be locked when login and signup features will be implemented.</p>
+     <p style="background-color: chocolate;"><b>Welcome to the Dashboard where you can do your video calls and text chat!!
     </b></p>
     
-    <form method="get" action="http://localhost:8080/chat"><button type="submit">Text Chat</button></form>
+    <form method="get" action="http://localhost:8080/chat"><button type="submit" style="background-color: olivedrab; padding: 2px; font-weight: bolder; color: black;">Text Chat</button></form>
     <p style="background-color: chocolate;">Video Calling works on PC!! Please connect camera and microphone first for the video to work.</p>
     Join room by entering the code and then press the go button.
    
@@ -37,9 +37,9 @@
       Room Code: <input type="text" name="url" id="url" required>
       <input type="submit" value="go" >
   </form>
-   
-<form method="get" action="http://localhost:8080/videochat" style="background-color: olivedrab;"><button type="submit">Video Chat</button></form>
-    <p style="background-color: chocolate;">Audio Chat Coming soon!!</p>
-    <form method="get" action="http://localhost:8080/404/"><button type="submit">Audio Chat</button></form>
+   <p>Hit this video chat button to create a new call.</p>
+<form method="get" action="http://localhost:8080/videochat"><button type="submit" style="background-color: olivedrab; padding: 2px; font-weight: bolder; color:black">Video Chat</button></form>
+    <p style="background-color: chocolate;">Audio Chat Coming soon!! Still in development</p>
+    <form method="get" action="http://localhost:8080/404/"><button type="submit" style="background-color: red; padding:2px; font-weight:bolder; color:black;">Audio Chat</button></form>
 </body>
 </html>

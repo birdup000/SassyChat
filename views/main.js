@@ -4,7 +4,7 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
-// Get username and room from URL
+// Get username and room from URL (Will be changed to local authentication soon because of easy exploitation through this method of getting usernames)
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
