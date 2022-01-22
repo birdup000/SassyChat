@@ -57,6 +57,9 @@ app.get('/login', (req, res) => {
   res.render("login")  
 })
 
+app.get('/gecko', (req, res) => {
+  res.render("gecko")  
+})
 
 app.get('/signup', (req, res) => {
   res.render("signup")  
