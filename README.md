@@ -1,4 +1,4 @@
-# SassyFixxeChat
+# SassyChat
  
 This project actively being updated every once a week.
 Improvments will be in small increments(small updates to files).
