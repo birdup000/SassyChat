@@ -13,10 +13,24 @@ not a email and a password.
         <title>Login</title>
         </head>
     <body>
+      
+        <div class="topnav">
+            <a href="/home">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/about">About</a>
+            <a href="/signup">Sign Up</a>
+            <a class="active" href="/login">Login</a>
+            <a  href="/dashboard">Dashboard</a>
+        </div>
+        
+        
+      
+      
+      
         <div class = "display">
-            <div class = "center">
-                <h1>Login</h1>
-                <div id="time"></div>
+            
+                <h1 style="color: White;">Login</h1>
+                <p style="color: white;">Login and Sign Up pages are still in developement as of now.</p>
                 <form action="/login" method="post">
                     <div>
                         <div>
@@ -33,41 +47,12 @@ not a email and a password.
                     <button type="submit" class="butn" style="height:50px; width: 75px;  font-weight: bold;  font-size: 18px; ">Login</button>
                 </form>
          <a href="/signup">
-   <input type="button" value="signup" class="butn" />
+   <input type="button" value="Sign Up Page Here!!" class="butn" />
 </a>
 <br>
-<a href="/home">
-    <input type="button" value="Homepage" class="butn" />
-</a>
             </div>
         </div>
-   <script>
-document.getElementById("time").innerHTML = formatAMPM();
-
-function formatAMPM() {
-var d = new Date(),
-    minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
-    hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
-    ampm = d.getHours() >= 12 ? 'pm' : 'am',
-    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
-}
-</script>
-
-
-<script type="text/javascript">
-    var currentTime = new Date().getHours();
-    if (document.body) {
-        if (7 <= currentTime && currentTime < 20) {
-            document.body.style.backgroundColor = "lightgreen";
-        }
-        else {
-            document.body.style.backgroundColor = "lightblue";
-        }
-    }
-    </script>
-
+  
     </body>
    
 </html>

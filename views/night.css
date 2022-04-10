@@ -1,14 +1,16 @@
-.center {
-  margin: auto;
-  border: 2dpx solid #314141;
-  border-radius: 15px;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  width: auto;
-    background-color: lightblue;
-
+h2 {
+  color: #FFFF;
 }
+
+h3 {
+  color: #FFFF;
+}
+
+p {
+  color: #FFFF;
+  padding: 5px;
+}
+
 
 label {
   color: #314141;
@@ -60,7 +62,44 @@ body {
   font-size: 150%;
   height:auto;
   width:auto;
+  shape-margin: 5% black;
+  background-color: black;
 
 }
 
 
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 5px;
+
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  -webkit-box-shadow: 5px 5px 5px rgba(68, 196, 132, 0.712);
+          box-shadow: 5px 5px 5px rgba(68, 196, 132, 0.712);
+  width: 80px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  border-radius: 5px;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #414141;
+  color: white;
+}
