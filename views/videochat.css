@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: black;
     font-size: 150%;
   height:auto;
   width:auto;
@@ -55,3 +55,7 @@ body {
   .sidenav a {font-size: 18px;}
 }
 
+p{
+color:white;
+
+}

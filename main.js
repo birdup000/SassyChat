@@ -3,6 +3,11 @@ const express = require('express')
 const app = express();
 const path = require('path')
 const {v4: uuidV4} = require('uuid')
+const bodyParser = require('body-parser'); // middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
 var port = 8080;
 
 
@@ -21,8 +26,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 
-const users = []
-app.use(express.urlencoded({extended: false}))
+
 app.use(express.json())
 
 
@@ -80,19 +84,21 @@ app.get('/chatlogged', (req, res) =>{
 
 app.post("/login", (req, res) => {
   let form = req.body;
-  let username = req.body["uname"];
+  let username = req.body["username"];
   let password = req.body["password"];
   //chack user login
+ res.send(` Username:${username} Password:${password}`)
+ 
   console.log(`\x1b[42mNEW LOGIN REQUEST\x1b[0m: (${username} | ${password})`)
 })
 
 
 app.post("/signup", (req, res) => {
   let form = req.body;
-  let username = req.body["uname"];
+  let username = req.body["username"];
   let password = req.body["password"];
   let email = req.body["email"];
-  //chack user login
+  //chack user signup
   console.log(`\x1b[42mNEW SIGN UP REQUEST\x1b[0m: (${username} | ${password} | ${email})`)
 })
 

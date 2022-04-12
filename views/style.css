@@ -17,7 +17,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: auto;
-	background: var(--light-color);
+	background-color: black;
 	margin: 20px;
 	font-size: auto;
   height:auto;
