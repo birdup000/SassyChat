@@ -12,10 +12,7 @@ var cookieParser = require('cookie-parser');
 app.use(upload.array());
 app.use(cookieParser());
 var port = 8080;
-app.use(session({secret:'Keep it secret'
-,name:'uniqueSessionID'
-,saveUninitialized:false}))
-const users = require("./users.json");
+app.use(session({secret: "Your secret key"}));
 
 
 
@@ -32,10 +29,8 @@ const server = http.createServer(app);
 
 const io = socketio(server);
 
-var Users =[{
-  username: 'gecko',
-  password: 'Hotwheel1'
-}] 
+var Users = [];
+
 
 app.use(express.json())
 
@@ -92,26 +87,27 @@ app.get('/chatlogged', (req, res) =>{
   res.render("chatlogged")
  })
 
+
  
-
-
 app.post("/login", (req, res) => {
   let form = req.body;
   let username = req.body["username"];
   let password = req.body["password"];
  //more cool cookiestuff 
+ console.log(Users);
+ if(!req.body.username || !req.body.password){
+    res.render('login', {message: "Please enter both username and password"});
+ } else {
+    Users.filter(function(user){
+       if(user.username === req.body.username && user.password === req.body.password){
+          req.session.user = user;
+          res.redirect('/protected_page');
+       }
+    });
+    res.render('login', {message: "Invalid credentials!"});
+ }
  
- })
- 
-
-  //chack user login
- //res.send(` Username:${username} Password:${password}`)
- 
-
-  console.log(`\x1b[42mNEW LOGIN REQUEST\x1b[0m: (${username} | ${password})`)
-})
-
-app.get('/logout', function(req, res){
+ app.get('/logout', function(req, res){
   req.session.destroy(function(){
      console.log("user logged out.")
   });
@@ -120,6 +116,23 @@ app.get('/logout', function(req, res){
 
 
 
+  //chack user login
+ //res.send(` Username:${username} Password:${password}`)
+ 
+
+  console.log(`\x1b[42mNEW LOGIN REQUEST\x1b[0m: (${username} | ${password})`)
+})
+
+
+function checkSignIn(req, res,next){
+  if(req.session.user){
+     next();     //If session exists, proceed to page
+  } else {
+     var err = new Error("Not logged in!");
+     console.log(req.session.user);
+     next(err);  //Error, trying to access unauthorized page!
+  }
+}
 
 app.post("/signup", (req, res) => {
   let form = req.body;
