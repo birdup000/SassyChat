@@ -13,6 +13,7 @@ app.use(upload.array());
 app.use(cookieParser());
 var port = 8080;
 app.use(session({secret: "Your secret key"}));
+const fs = require('fs');
 
 
 
@@ -30,6 +31,9 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 var Users = [];
+var Newdata = fs.readFileSync('users.json');
+var newData = JSON.stringify(Newdata);
+
 
 
 app.use(express.json())
@@ -134,6 +138,9 @@ function checkSignIn(req, res,next){
   }
 }
 
+
+
+
 app.post("/signup", (req, res) => {
   let form = req.body;
   let username = req.body["username"];
@@ -152,10 +159,12 @@ if(!req.body.username || !req.body.password){
            message: "User Already Exists! Login or choose another user id"});
      }
   });
-  var newUser = {username: req.body.username, password: req.body.password};
-  Users.push(newUser);
+  let newUser = {username: req.body.username, password: req.body.password};
+   Users.push(newUser, Newdata);
+ 
   req.session.user = newUser;
   res.redirect('/protected_page');
+  fs.writeFile  = ("users.json");
 }
 });
 
