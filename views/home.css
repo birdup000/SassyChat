@@ -3,7 +3,9 @@ body {
   background-color: black;
   font-style: normal;
 }
-
+h1 {
+  color: #FFFF;
+}
 h2 {
   color: #FFFF;
 }
