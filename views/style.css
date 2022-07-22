@@ -10,6 +10,7 @@
 }
 
 * {
+	border-radius: 10px;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -47,7 +48,7 @@ a {
 .chat-container {
 	max-width: auto;
 	max-height: auto;
-	background: lightseagreen;
+	background: rgb(62, 68, 68);
 	margin: 30px auto;
 	overflow: hidden;
 }
@@ -70,7 +71,7 @@ a {
 
 .chat-sidebar {
 	background: var(--dark-color-b);
-	color: rgb(48, 35, 35);
+	color: rgb(151, 142, 142);
 	padding: 20px 20px 60px;
 	overflow-y: scroll;
 }
@@ -137,7 +138,7 @@ a {
 .join-container {
 	max-width: 500px;
 	margin: 80px auto;
-	color: black;
+	color: rgb(182, 179, 179);
 }
 
 .join-header {

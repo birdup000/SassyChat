@@ -7,7 +7,7 @@ const bodyParser = require('body-parser'); // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
+///Change here to change what port is server hosted on
 var port = 8080;
 
 
@@ -61,6 +61,7 @@ app.get('/login', (req, res) => {
   res.render("login")  
 })
 
+//Hidden Gem :) 
 app.get('/gecko', (req, res) => {
   res.render("gecko")  
 })
@@ -80,29 +81,10 @@ app.get('/chat', (req, res) =>{
 
 app.get('/chatlogged', (req, res) =>{
   res.render("chatlogged")
- })
-
-app.post("/login", (req, res) => {
-  let form = req.body;
-  let username = req.body["username"];
-  let password = req.body["password"];
-  //chack user login
- res.send(` Username:${username} Password:${password}`)
- 
-  console.log(`\x1b[42mNEW LOGIN REQUEST\x1b[0m: (${username} | ${password})`)
 })
 
 
-app.post("/signup", (req, res) => {
-  let form = req.body;
-  let username = req.body["username"];
-  let password = req.body["password"];
-  let email = req.body["email"];
-  //chack user signup
-  console.log(`\x1b[42mNEW SIGN UP REQUEST\x1b[0m: (${username} | ${password} | ${email})`)
-})
-
-
+//Broken For Now due to uuid generation for video calling
 ////app.use(function (req,res,next){
 ////	res.status(404).render("404");
 ///});
@@ -194,7 +176,7 @@ io.on('connection', socket => {
 
 
 
-
+///Also change here as well for showing what port server is running on
 const PORT = process.env.PORT || 8080
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
