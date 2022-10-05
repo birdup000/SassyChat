@@ -9,7 +9,7 @@ Thank you for checking out my project!!
 
 # Contribute?
 
-Contributing can be simple please submit your code changes to our pull requests page in this Github.
+Contributing is easy please submit your code changes to our pull requests page in this Github.
 Thanks for helping out in advance :smiley: :heart_eyes:
 
 # Are we Open Source?
