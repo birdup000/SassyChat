@@ -38,7 +38,7 @@
     <script>
       function process()
       {
-          var url = "https://cakenuggets.herokuapp.com" + document.getElementById("url").value;
+          var url = "http://localhost:8080" + document.getElementById("url").value;
           location.href = url;
           return false;
       }
@@ -49,7 +49,7 @@
       <input type="submit" value="go" >
   </form>
    <p>Hit this video chat button to create a new call room.</p>
-<form method="get" action="https://cakenuggets.herokuapp.com/videochat"><button type="submit" style="background-color: olivedrab; padding: 2px; font-weight: bolder; color:black;border-radius: 10px;">Video Chat</button></form>
+<form method="get" action="http://localhost:8080/videochat"><button type="submit" style="background-color: olivedrab; padding: 2px; font-weight: bolder; color:black;border-radius: 10px;">Video Chat</button></form>
     <p style="background-color: orangered;border-radius: 15px;">Audio Chat Coming soon!! Still in development</p>
     <form method="get" action="https://cakenuggets.herokuapp.com/404/"><button type="submit" style="background-color: red; padding:2px; font-weight:bolder; color:black;border-radius: 10px;">Audio Chat</button></form>
 </body>
