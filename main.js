@@ -154,10 +154,24 @@ io.on('connection', socket => {
 app.get('/videochat', (req, res) => {
   res.redirect(`/${uuidV4()}`)
 })
+
+// If they join the link, generate a random UUID and send them to a new room with said UUID
+app.get('/audiochat', (req, res) => {
+  res.redirect(`/${uuidV4()}`)
+})
+
 // If they join a specific room, then render that room
 app.get('/:room', (req, res) => {
   res.render('room', {roomId: req.params.room})
 })
+
+// If they join a specific room, then render that room
+app.get('/:room', (req, res) => {
+  res.render('room2', {roomId: req.params.room})
+})
+
+
+
 // When someone connects to the server
 io.on('connection', socket => {
   // When someone attempts to join the room
