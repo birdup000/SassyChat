@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 ///Change here to change what port is server hosted on
-var port = 8080;
+var port = 80;
 
 
 
@@ -191,7 +191,7 @@ io.on('connection', socket => {
 
 
 ///Also change here as well for showing what port server is running on
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 80
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
