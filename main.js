@@ -7,6 +7,31 @@ const bodyParser = require('body-parser'); // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+
+//the actual messages
+const joinMessages = (name) => {
+  return [
+    `WHATS UP!! ${name}.`,
+    `so glad your hear, ${name}.`,
+    `thanks for joining.`
+  ]
+} 
+
+const leaveMessages = (name) => {
+  return [
+    `Im SAd You LeFT, I guess You Had SomthIng Better TO DO ${name} :(.`,
+    `real dissapointing, ${name}.`,
+  ]
+} 
+//adding a random message whenever someone joins
+function randomMessage(status, name){
+  if (status === "join"){
+    return joinMessages(name)[Math.floor(joinMessages(name).length * Math.random)];
+  } 
+  return leaveMessages(name)[Math.floor(joinMessages(name).length * Math.random)];
+
+}
+
 ///Change here to change what port is server hosted on
 var port = 80;
 
@@ -20,6 +45,7 @@ const {
   userLeave,
   getRoomUsers
 } = require('./views/users');
+const { join } = require('path');
 
 const server = http.createServer(app);
 
@@ -106,7 +132,7 @@ io.on('connection', socket => {
       .to(user.room)
       .emit(
         'message',
-        formatMessage(botName, `${user.username} has joined the chat`)
+        formatMessage(botName, `${user.username} has joined the chat ${randomMessage("join", user.username)}`)
       );
 
     // Send users and room info
@@ -130,7 +156,7 @@ io.on('connection', socket => {
     if (user) {
       io.to(user.room).emit(
         'message',
-        formatMessage(botName, `${user.username} has left the chat`)
+        formatMessage(botName, `${user.username} has left the chat ${randomMessage("left", user.username)})}`)
       );
 
       // Send users and room info
