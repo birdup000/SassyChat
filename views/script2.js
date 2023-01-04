@@ -13,7 +13,8 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 ///
 // Access the user's just audio
 navigator.mediaDevices.getUserMedia({
-    audio: true
+    audio: true,
+    video: false
 }).then(stream => {
     getLocalAudioStream(myAudio, stream) // Display our video to ourselves
 
