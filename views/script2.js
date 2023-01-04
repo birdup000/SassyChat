@@ -15,7 +15,7 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 navigator.mediaDevices.getUserMedia({
     audio: true
 }).then(stream => {
-    addVideoStream(myVideo, stream) // Display our video to ourselves
+    getLocalAudioStream(myAudio, stream) // Display our video to ourselves
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
         call.answer(stream) // Stream them our video/audio
