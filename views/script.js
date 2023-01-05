@@ -64,7 +64,7 @@ function handleVideoState(){
     videoGrid.append(myVideo);
 }
 
-document.getElementById("onoff").onclick(handleVideoState);
+document.getElementById("onoff").onclick(() => {handleVideoState(); console.log(onOffVideo)});
 
  /// 
 
