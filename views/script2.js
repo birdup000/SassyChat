@@ -1,19 +1,22 @@
-//AudioCalling
-const socket = io('/') // Create our socket
-const videoGrid = document.getElementById('video-grid') // Find the Video-Grid element
+//Audio Calling Portion ONLY
+///will make interjection on the both audio and video toggle
+/// Adding Audio backend
 
+const socket = io('/') // Create our socket
+const audioGrid = document.getElementById('video-grid') // Find the Video-Grid element
+ 
 const myPeer = new Peer() // Creating a peer element which represents the current user
-const myVideo = document.createElement('video') // Create a new video tag to show our video
-myVideo.muted = true // Mute ourselves on our end so there is no feedback loop
+const myAudio = document.createElement('video') // Create a new video tag to show our video
+myAudio.muted = true // Mute ourselves on our end so there is no feedback loop
 ///
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 ///
-// Access the user's video and audio
+// Access the user's just audio
 navigator.mediaDevices.getUserMedia({
-    video: false,
-    audio: true
+    audio: true,
+    video: false
 }).then(stream => {
-    addVideoStream(myVideo, stream) // Display our video to ourselves
+    getLocalAudioStream(myAudio, stream) // Display our video to ourselves
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
         call.answer(stream) // Stream them our video/audio
@@ -37,7 +40,7 @@ function connectToNewUser(userId, stream) { // This runs when someone joins our 
     // Add their video
     const video = document.createElement('video') 
     call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream)
+        addAudioStream(audio, userAudioStream)
     })
     // If they leave, remove their video
     call.on('close', () => {
@@ -71,8 +74,8 @@ function addVideoStream(video, stream) {
         }
 
         // if video device
-        if (media_source.kind == 'video') {
-            constraints.video = {
+        if (media_source.kind == 'audio') {
+            constraints.audio = {
                 optional: [{
                     sourceId: media_source.id
                 }]
