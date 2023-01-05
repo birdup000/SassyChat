@@ -64,6 +64,8 @@ function handleVideoState(){
     videoGrid.append(myVideo);
 }
 
+document.getElementById("onoff").onclick(handleVideoState);
+
  /// 
 
  MediaStreamTrack.getSources(function (media_sources) {
