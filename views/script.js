@@ -1,6 +1,7 @@
 //videocalling
 const socket = io('/') // Create our socket
 const videoGrid = document.getElementById('video-grid') // Find the Video-Grid element
+var onOffVideo = true; //true is video on
 
 const myPeer = new Peer() // Creating a peer element which represents the current user
 const myVideo = document.createElement('video') // Create a new video tag to show our video
@@ -14,6 +15,7 @@ navigator.mediaDevices.getUserMedia({
     audio: true
 }).then(stream => {
     addVideoStream(myVideo, stream) // Display our video to ourselves
+
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
         call.answer(stream) // Stream them our video/audio
@@ -52,6 +54,14 @@ function addVideoStream(video, stream) {
         video.play()
     })
     videoGrid.append(video) // Append video element to videoGrid
+}
+
+function handleVideoState(){
+    if (onOffVideo){
+    videoGrid.remove(myVideo);
+    return;
+    }
+    videoGrid.append(myVideo);
 }
 
  /// 
