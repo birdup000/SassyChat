@@ -1,7 +1,6 @@
 //videocalling
 const socket = io('/') // Create our socket
 const videoGrid = document.getElementById('video-grid') // Find the Video-Grid element
-var onOffVideo = true; //true is video on
 
 const myPeer = new Peer() // Creating a peer element which represents the current user
 const myVideo = document.createElement('video') // Create a new video tag to show our video
@@ -56,15 +55,7 @@ function addVideoStream(video, stream) {
     videoGrid.append(video) // Append video element to videoGrid
 }
 
-function handleVideoState(){
-    if (onOffVideo){
-    videoGrid.remove(myVideo);
-    return;
-    }
-    videoGrid.append(myVideo);
-}
 
-document.getElementById("onoff").onclick(() => {handleVideoState(); console.log(onOffVideo)});
 
  /// 
 
