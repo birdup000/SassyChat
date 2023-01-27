@@ -34,9 +34,13 @@
 </head>
 <body>
 
-<div class="video-container">
-  <video id="localVideo" autoplay muted></video>
-  <button id="turnOffVideo" onclick="turnOffVideo()">Turn Off Video</button>
+<div>
+  <div>
+    <label>
+      <input type="checkbox" id="video-toggle" onchange="toggleVideo()">
+      Turn video on/off
+    </label>
+  </div>
 </div>
 
     <button id = "onoff">press me to pause</button>
