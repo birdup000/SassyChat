@@ -33,20 +33,11 @@
     </style>
 </head>
 <body>
-<div class="video-controls">
-  <button onclick="toggleVideo()">Turn Video Off</button>
-</div>
 
-<script>
-function toggleVideo() {
-  let videoElement = document.querySelector('#localVideo');
-  if (videoElement.muted) {
-    videoElement.muted = false;
-  } else {
-    videoElement.muted = true;
-  }
-}
-</script>
+<div class="video-container">
+  <video id="localVideo" autoplay muted></video>
+  <button id="turnOffVideo" onclick="turnOffVideo()">Turn Off Video</button>
+</div>
 
     <button id = "onoff">press me to pause</button>
     <div class="sidenav">
