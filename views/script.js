@@ -55,13 +55,10 @@ function addVideoStream(video, stream) {
     videoGrid.append(video) // Append video element to videoGrid
 }
 
-function toggleVideo() {
-  let videoElement = document.querySelector('#localVideo');
-  if (videoElement.muted) {
-    videoElement.muted = false;
-  } else {
-    videoElement.muted = true;
-  }
+function turnOffVideo(){
+  let video = document.getElementById('localVideo');
+  video.muted = true;
+  video.pause();
 }
 
  /// 
