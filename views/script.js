@@ -55,10 +55,13 @@ function addVideoStream(video, stream) {
     videoGrid.append(video) // Append video element to videoGrid
 }
 
-function turnOffVideo(){
-  let video = document.getElementById('localVideo');
-  video.muted = true;
-  video.pause();
+function toggleVideo() {
+  const videoToggle = document.getElementById('video-toggle');
+  if (videoToggle.checked) {
+    // Turn video on
+  } else {
+    // Turn video off
+  }
 }
 
  /// 
