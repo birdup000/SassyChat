@@ -3,26 +3,27 @@
 /// Adding Audio backend
 
 const socket = io('/') // Create our socket
-const audioGrid = document.getElementById('video-grid') // Find the Video-Grid element
+const audioGrid = document.getElementById('audio-grid') // Find the Audio-Grid element
  
 const myPeer = new Peer() // Creating a peer element which represents the current user
-const myAudio = document.createElement('video') // Create a new video tag to show our video
-myAudio.muted = true // Mute ourselves on our end so there is no feedback loop
+const myAudio = document.createElement('audio') // Create a new audio tag to show our audio
+
 ///
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 ///
+
 // Access the user's just audio
 navigator.mediaDevices.getUserMedia({
     audio: true,
     video: false
 }).then(stream => {
-    getLocalAudioStream(myAudio, stream) // Display our video to ourselves
+    getLocalAudioStream(myAudio, stream) // Display our audio to ourselves
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
-        call.answer(stream) // Stream them our video/audio
-        const video = document.createElement('video') // Create a video tag for them
-        call.on('stream', userVideoStream => { // When we recieve their stream
-            addVideoStream(video, userVideoStream) // Display their video to the screen
+        call.answer(stream) // Stream them our audio
+        const audio = document.createElement('audio') // Create an audio tag for them
+        call.on('stream', userAudioStream => { // When we recieve their stream
+            addAudioStream(audio, userAudioStream) // Display their audio to the screen
         })
     })
 
@@ -37,55 +38,22 @@ myPeer.on('open', id => { // When we first open the app, have us join a room
 
 function connectToNewUser(userId, stream) { // This runs when someone joins our room
     const call = myPeer.call(userId, stream) // Call the user who just joined
-    // Add their video
-    const video = document.createElement('video') 
-    call.on('stream', userVideoStream => {
+    // Add their audio
+    const audio = document.createElement('audio') 
+    call.on('stream', userAudioStream => {
         addAudioStream(audio, userAudioStream)
     })
-    // If they leave, remove their video
+    // If they leave, remove their audio
     call.on('close', () => {
-        video.remove()
+        audio.remove()
     })
 }
 
 
-function addVideoStream(video, stream) {
-    video.srcObject = stream 
-    video.addEventListener('loadedmetadata', () => { // Play the video as it loads
-        video.play()
+function addAudioStream(audio, stream) {
+    audio.srcObject = stream 
+    audio.addEventListener('loadedmetadata', () => { // Play the audio as it loads
+        audio.play()
     })
-    videoGrid.append(video) // Append video element to videoGrid
+    audioGrid.append(audio) // Append audio element to audioGrid
 }
-
- /// 
-
- MediaStreamTrack.getSources(function (media_sources) {
-    for (var i = 0; i < media_sources.length; i++) {
-        var media_source = media_sources[i];
-        var constraints = {};
-
-        // if audio device
-        if (media_source.kind == 'audio') {
-            constraints.audio = {
-                optional: [{
-                    sourceId: media_source.id
-                }]
-            };
-        }
-
-        // if video device
-        if (media_source.kind == 'audio') {
-            constraints.audio = {
-                optional: [{
-                    sourceId: media_source.id
-                }]
-            };
-        }
-
-
-        // invoke getUserMedia to capture this device
-        navigator.webkitGetUserMedia(constraints, function (stream) {
-            console.log(stream.id, stream);
-        }, console.error);
-    }
-});

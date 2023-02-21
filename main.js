@@ -146,32 +146,32 @@ io.on('connection', socket => {
 });
 
 
-
-
-
-
 //video chatting merge
+//addition Audio chat
 
-
-// If they join the link, generate a random UUID and send them to a new room with said UUID
+// Generate a random UUID and send the user to a new room with said UUID for video chat
 app.get('/videochat', (req, res) => {
-  res.redirect(`/${uuidV4()}`)
+  const uuid = uuidV4()
+  res.redirect(`/${uuid}`)
 })
 
-// If they join the link, generate a random UUID and send them to a new room with said UUID
+// Generate a random UUID and send the user to a new room with said UUID for audio chat
 app.get('/audiochat', (req, res) => {
-  res.redirect(`/${uuidV4()}`)
+  const uuid = uuidV4()
+  res.redirect(`/audio/${uuid}`)
+})
+
+// Serve the audio chat page
+app.get('/audio/:room', (req, res) => {
+  res.render('audio', { roomId: req.params.room })
 })
 
 // If they join a specific room, then render that room
-app.get('/:room', (req, res) => {
-  res.render('room', {roomId: req.params.room})
+app.get('/:video', (req, res) => {
+  res.render('video', {roomId: req.params.room})
 })
 
-// If they join a specific room, then render that room
-app.get('/:room', (req, res) => {
-  res.render('room2', {roomId: req.params.room})
-})
+
 
 
 
