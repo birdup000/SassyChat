@@ -157,7 +157,7 @@ app.get('/videochat', (req, res) => {
 
 /// Serve the video chat page
 app.get('/video/:room', (req, res) => {
-  res.render('video.ejs', {roomId: req.params.room})
+  res.render('video', {roomId: req.params.room})
 })
 
 
@@ -169,7 +169,7 @@ app.get('/audiochat', (req, res) => {
 
 // Serve the audio chat page
 app.get('/audio/:room', (req, res) => {
-  res.render('audio.ejs', { roomId: req.params.room })
+  res.render('audio', { roomId: req.params.room })
 })
 
 
