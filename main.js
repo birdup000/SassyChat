@@ -87,10 +87,10 @@ app.get('/chatlogged', (req, res) =>{
 })
 
 
-//Broken For Now due to uuid generation for video calling
-////app.use(function (req,res,next){
-////	res.status(404).render("404");
-///});
+/// not yet fixed 
+//app.use(function (req,res,next){
+//	res.status(404).render("404");
+//});
 
 const botName = 'Chat Bot';
 
@@ -152,8 +152,14 @@ io.on('connection', socket => {
 // Generate a random UUID and send the user to a new room with said UUID for video chat
 app.get('/videochat', (req, res) => {
   const uuid = uuidV4()
-  res.redirect(`/${uuid}`)
+  res.redirect(`/video/${uuid}`)
 })
+
+/// Serve the video chat page
+app.get('/video/:room', (req, res) => {
+  res.render('video.ejs', {roomId: req.params.room})
+})
+
 
 // Generate a random UUID and send the user to a new room with said UUID for audio chat
 app.get('/audiochat', (req, res) => {
@@ -163,12 +169,7 @@ app.get('/audiochat', (req, res) => {
 
 // Serve the audio chat page
 app.get('/audio/:room', (req, res) => {
-  res.render('audio', { roomId: req.params.room })
-})
-
-// If they join a specific room, then render that room
-app.get('/:video', (req, res) => {
-  res.render('video', {roomId: req.params.room})
+  res.render('audio.ejs', { roomId: req.params.room })
 })
 
 
