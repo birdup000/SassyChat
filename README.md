@@ -1,6 +1,6 @@
 # SassyChat
  
- Welcome to SassyChat we are hopping to be fully peer based soon... And also we are a Privacy based chatting platform where nothing stores on our/your servers yep that means anything you write or type into the platform won't be logged or tracked. Feel free to deploy our Chatting Platform anywhere.
+ Welcome to SassyChat we are hopping to be fully peer based soon... And also we are a Privacy based chatting platform. Feel free to deploy our Chatting Platform anywhere.
 
 Please checkout the wiki page for instructions on getting setup.
 
