@@ -23,10 +23,11 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"))
 app.set('views', './views'); // specify the views directory
 -// Static Files
-app.use(express.static('views'))
-app.use('/css', express.static(__dirname + 'views/css'))
-app.use('/js', express.static(__dirname + 'views/js'))
-app.use('/img', express.static(__dirname + 'views/img'))
+app.use(express.static(path.join(__dirname, 'views')))
+app.use('/css', express.static(path.join(__dirname, 'views/css')))
+app.use('/js', express.static(path.join(__dirname, 'views/js')))
+app.use('/img', express.static(path.join(__dirname, 'views/img')))
+
 app.get('/', (req, res) => {
   res.render("home")  
 })
@@ -59,10 +60,8 @@ app.get('/chat', (req, res) =>{
 app.get('/chatlogged', (req, res) =>{
   res.render("chatlogged")
 })
-/// not yet fixed 
-//app.use(function (req,res,next){
-//	res.status(404).render("404");
-//});
+
+
 const botName = 'Chat Bot';
 // Run when client connects
 io.on('connection', socket => {
@@ -123,13 +122,13 @@ app.get('/audiochat', (req, res) => {
 })
 // Serve the audio chat page
 app.get('/audio/:room', (req, res) => {
-  res.render('audio', { roomId2: req.params.room })
+  res.render('audio', { roomId: req.params.room })
 })
 // When someone connects to the server
 io.on('connection', socket => {
   // When someone attempts to join the room
-  socket.on('join-room', (roomId, userId,roomId2) => {
-      socket.join(roomId,roomId2)  // Join the room
+  socket.on('join-room', (roomId, userId) => {
+      socket.join(roomId)  // Join the room
       socket.broadcast.emit('user-connected', userId) // Tell everyone else in the room that we joined
       // Communicate the disconnection
       socket.on('disconnect', () => {
@@ -137,6 +136,14 @@ io.on('connection', socket => {
       })
   })
 })
+
+
+/// not yet fixed 
+app.use(function (req,res,next){
+	res.status(404).render("404");
+});
+
+
 ///Also change here as well for showing what port server is running on
 const PORT = process.env.PORT || 80
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
