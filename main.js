@@ -23,10 +23,10 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"))
 app.set('views', './views'); // specify the views directory
 -// Static Files
-app.use(express.static(path.join(__dirname, 'views')))
-app.use('/css', express.static(path.join(__dirname, 'views/css')))
-app.use('/js', express.static(path.join(__dirname, 'views/js')))
-app.use('/img', express.static(path.join(__dirname, 'views/img')))
+app.use(express.static(path.join(__dirname, 'views')));
+app.use('/css', express.static(path.join(__dirname, 'views/css')));
+app.use('/js', express.static(path.join(__dirname, 'views/js')));
+app.use('/img', express.static(path.join(__dirname, 'views/img')));
 
 app.get('/', (req, res) => {
   res.render("home")  
@@ -109,19 +109,19 @@ io.on('connection', socket => {
 // Generate a random UUID and send the user to a new room with said UUID for video chat
 app.get('/videochat', (req, res) => {
   const uuid = uuidV4()
-  res.redirect(`/video/${uuid}`)
+  res.redirect(`/video${uuid}`)
 })
 /// Serve the video chat page
-app.get('/video/:room', (req, res) => {
+app.get('/video:room', (req, res) => {
   res.render('video', {roomId: req.params.room})
 })
 // Generate a random UUID and send the user to a new room with said UUID for audio chat
 app.get('/audiochat', (req, res) => {
   const uuid = uuidV4()
-  res.redirect(`/audio/${uuid}`)
+  res.redirect(`/audio${uuid}`)
 })
 // Serve the audio chat page
-app.get('/audio/:room', (req, res) => {
+app.get('/audio:room', (req, res) => {
   res.render('audio', { roomId: req.params.room })
 })
 // When someone connects to the server
