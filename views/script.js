@@ -97,3 +97,10 @@ function toggleVideo() {
     }
 });
 
+function toggleAudio() {
+    const audioTracks = stream.getAudioTracks();
+    for (const track of audioTracks) {
+      track.enabled = !track.enabled;
+    }
+  }
+  
