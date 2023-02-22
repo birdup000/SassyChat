@@ -33,7 +33,7 @@ navigator.mediaDevices.getUserMedia({
 })
 
 myPeer.on('open', id => { // When we first open the app, have us join a room
-    socket.emit('join-room', ROOM_ID2, id)
+    socket.emit('join-room', ROOM_ID, id)
 })
 
 function connectToNewUser(userId, stream) { // This runs when someone joins our room
@@ -50,10 +50,11 @@ function connectToNewUser(userId, stream) { // This runs when someone joins our 
 }
 
 
-function addAudioStream(audio, stream) {
-    audio.srcObject = stream 
-    audio.addEventListener('loadedmetadata', () => { // Play the audio as it loads
-        audio.play()
-    })
-    audioGrid.append(audio) // Append audio element to audioGrid
+function addAudioStream(video, stream) {
+    video.srcObject = stream
+    video.muted = true
+    video.addEventListener('loadedmetadata', () => {
+        video.play()
+    });
+    audioGrid.append(video)
 }
