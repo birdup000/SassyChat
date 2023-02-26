@@ -1,6 +1,6 @@
-//Audio Calling Portion ONLY
-///will make interjection on the both audio and video toggle
-/// Adding Audio backend
+// Audio Calling Portion ONLY
+// will make interjection on the both audio and video toggle
+// Adding Audio backend
 
 const socket = io('/') // Create our socket
 const audioGrid = document.getElementById('audio-grid') // Find the Audio-Grid element
@@ -8,16 +8,14 @@ const audioGrid = document.getElementById('audio-grid') // Find the Audio-Grid e
 const myPeer = new Peer() // Creating a peer element which represents the current user
 const myAudio = document.createElement('audio') // Create a new audio tag to show our audio
 
-///
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-///
-
 // Access the user's just audio
 navigator.mediaDevices.getUserMedia({
     audio: true,
     video: false
 }).then(stream => {
-    getLocalAudioStream(myAudio, stream) // Display our audio to ourselves
+    myAudio.srcObject = stream // Set our audio to use our local audio stream
+    myAudio.muted = true // Mute our own audio so we don't hear ourselves
+    myAudio.play() // Start playing our audio
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
         call.answer(stream) // Stream them our audio
@@ -49,12 +47,12 @@ function connectToNewUser(userId, stream) { // This runs when someone joins our 
     })
 }
 
-
-function addAudioStream(video, stream) {
-    video.srcObject = stream
-    video.muted = true
-    video.addEventListener('loadedmetadata', () => {
-        video.play()
+function addAudioStream(stream) {
+    const audio = document.createElement('audio'); // Create a new audio tag
+    audio.srcObject = stream; // Set the audio stream as the source
+    audio.addEventListener('loadedmetadata', () => {
+      audio.play(); // Start playing the audio
     });
-    audioGrid.append(video)
-}
+    audioGrid.appendChild(audio); // Append the audio element to the audioGrid element
+  }
+  
