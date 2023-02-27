@@ -58,6 +58,10 @@
       font-size: 16px;
       cursor: pointer;
     }
+
+    #muteButton.muted {
+      background-color: #4CAF50;
+    }
   </style>
 </head>
 <body>
@@ -90,10 +94,20 @@
 
   <script>
     const videoToggle = document.getElementById('video-toggle');
+    const muteButton = document.getElementById('muteButton');
 
     videoToggle.addEventListener('change', () => {
       toggleVideo();
     });
+
+    function toggleAudio() {
+      const stream = localStream.getAudioTracks()[0];
+      if (stream.enabled) {
+        stream.enabled = false;
+        muteButton.classList.add('muted');
+      } else {
+        stream.enabled = true;
+        muteButton.classList.remove('muted');
+      }
+    }
   </script>
-</body>
-</html>

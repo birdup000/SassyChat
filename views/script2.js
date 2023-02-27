@@ -47,12 +47,12 @@ function connectToNewUser(userId, stream) { // This runs when someone joins our 
     })
 }
 
-function addAudioStream(stream) {
-    const audio = document.createElement('audio'); // Create a new audio tag
-    audio.srcObject = stream; // Set the audio stream as the source
+function addAudioStream(audio, stream) {
+    audio.srcObject = new MediaStream([stream.getAudioTracks()[0]]);
     audio.addEventListener('loadedmetadata', () => {
-      audio.play(); // Start playing the audio
+      audio.play();
     });
-    audioGrid.appendChild(audio); // Append the audio element to the audioGrid element
+    audioGrid.appendChild(audio);
   }
+  
   
