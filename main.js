@@ -106,26 +106,28 @@ io.on('connection', socket => {
 });
 //video chatting merge
 //addition Audio chat
-// Generate a random UUID for video chat
+//gen
 app.get('/videochat', (req, res) => {
   const roomId = uuidV4()
-  res.redirect(`/video/${roomId}`)
+  res.redirect(`/video${roomId}`)
 })
 
 // Serve the video chat page
-app.get('/video/:room', (req, res) => {
-  res.render('video', {roomId: req.params.room})
+app.get('/video:room', (req, res) => {
+  const roomId = req.params.room.slice(1)
+  res.render('video', {roomId: roomId})
 })
 
 // Generate a random UUID for audio chat
 app.get('/audiochat', (req, res) => {
   const roomId = uuidV4()
-  res.redirect(`/audio/${roomId}`)
+  res.redirect(`/audio${roomId}`)
 })
 
 // Serve the audio chat page
-app.get('/audio/:room', (req, res) => {
-  res.render('audio', {roomId: req.params.room})
+app.get('/audio:room', (req, res) => {
+  const roomId = req.params.room.slice(1)
+  res.render('audio', {roomId: roomId})
 })
 
 // When someone connects to the server
@@ -149,7 +151,6 @@ io.on('connection', socket => {
       })
   })
 })
-
 
 
 /// fixed
