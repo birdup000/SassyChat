@@ -17,6 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'views')));
 
 app.get('/', (req, res) => res.render('home'));
+app.get('/home', (req, res) => res.render('home'));
 app.get('/contact', (req, res) => res.render('contact'));
 app.get('/about', (req, res) => res.render('about'));
 app.get('/login', (req, res) => res.render('login'));
