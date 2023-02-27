@@ -106,54 +106,39 @@ io.on('connection', socket => {
 });
 //video chatting merge
 //addition Audio chat
-//gen
+// Generate a random UUID and send the user to a new room with said UUID for video chat
 app.get('/videochat', (req, res) => {
-  const roomId = uuidV4()
-  res.redirect(`/video${roomId}`)
+  const uuid = uuidV4()
+  res.redirect(`/video${uuid}`)
 })
-
-// Serve the video chat page
+/// Serve the video chat page
 app.get('/video:room', (req, res) => {
-  const roomId = req.params.room.slice(1)
-  res.render('video', {roomId: roomId})
+  res.render('video', {roomId: req.params.room})
 })
-
-// Generate a random UUID for audio chat
+// Generate a random UUID and send the user to a new room with said UUID for audio chat
 app.get('/audiochat', (req, res) => {
-  const roomId = uuidV4()
-  res.redirect(`/audio${roomId}`)
+  const uuid = uuidV4()
+  res.redirect(`/audio${uuid}`)
 })
-
 // Serve the audio chat page
 app.get('/audio:room', (req, res) => {
-  const roomId = req.params.room.slice(1)
-  res.render('audio', {roomId: roomId})
+  res.render('audio', { roomId: req.params.room })
 })
-
 // When someone connects to the server
 io.on('connection', socket => {
   // When someone attempts to join the room
   socket.on('join-room', (roomId, userId) => {
-      const room = io.sockets.adapter.rooms.get(roomId)
-      if (!room) {
-        socket.emit('room-not-found')
-        return
-      }
-      if (room.size >= 2) {
-        socket.emit('room-full')
-        return
-      }
       socket.join(roomId)  // Join the room
-      socket.broadcast.to(roomId).emit('user-connected', userId) // Tell everyone else in the room that we joined
+      socket.broadcast.emit('user-connected', userId) // Tell everyone else in the room that we joined
       // Communicate the disconnection
       socket.on('disconnect', () => {
-          socket.broadcast.to(roomId).emit('user-disconnected', userId)
+          socket.broadcast.emit('user-disconnected', userId)
       })
   })
 })
 
 
-/// fixed
+/// not yet fixed 
 app.use(function (req,res,next){
 	res.status(404).render("404");
 });
