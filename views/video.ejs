@@ -75,7 +75,7 @@
           }
         </style>
         <label2>
-          <input type="checkbox" id="video-toggle" onchange="toggleVideo()">
+          <input type="checkbox" id="video-toggle">
           Video on/off
         </label2>       
       </label>
@@ -87,5 +87,13 @@
  <br>
   <p>Audio/Video input and output will be determined by system and browser.</p>
   <p>Selection within Browser is in development.</p>
+
+  <script>
+    const videoToggle = document.getElementById('video-toggle');
+
+    videoToggle.addEventListener('change', () => {
+      toggleVideo();
+    });
+  </script>
 </body>
 </html>

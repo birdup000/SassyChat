@@ -5,16 +5,17 @@ const videoGrid = document.getElementById('video-grid') // Find the Video-Grid e
 const myPeer = new Peer() // Creating a peer element which represents the current user
 const myVideo = document.createElement('video') // Create a new video tag to show our video
 myVideo.muted = true // Mute ourselves on our end so there is no feedback loop
-///
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-///
+
+let localStream = null; // Create a variable to store the user's media stream
+
 // Access the user's video and audio
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
 }).then(stream => {
-    addVideoStream(myVideo, stream) // Display our video to ourselves
+    localStream = stream; // Store the user's media stream
 
+    addVideoStream(myVideo, stream) // Display our video to ourselves
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
         call.answer(stream) // Stream them our video/audio
@@ -46,7 +47,6 @@ function connectToNewUser(userId, stream) { // This runs when someone joins our 
     })
 }
 
-
 function addVideoStream(video, stream) {
     video.srcObject = stream 
     video.addEventListener('loadedmetadata', () => { // Play the video as it loads
@@ -56,51 +56,10 @@ function addVideoStream(video, stream) {
 }
 
 function toggleVideo() {
-  const videoToggle = document.getElementById('video-toggle');
-  if (videoToggle.checked) {
-    // Turn video on
-  } else {
-    // Turn video off
-  }
+    const videoTrack = localStream.getVideoTracks()[0];
+    if (videoTrack.enabled) {
+        videoTrack.enabled = false;
+    } else {
+        videoTrack.enabled = true;
+    }
 }
-
- /// 
-
- MediaStreamTrack.getSources(function (media_sources) {
-    for (var i = 0; i < media_sources.length; i++) {
-        var media_source = media_sources[i];
-        var constraints = {};
-
-        // if audio device
-        if (media_source.kind == 'audio') {
-            constraints.audio = {
-                optional: [{
-                    sourceId: media_source.id
-                }]
-            };
-        }
-
-        // if video device
-        if (media_source.kind == 'video') {
-            constraints.video = {
-                optional: [{
-                    sourceId: media_source.id
-                }]
-            };
-        }
-
-
-        // invoke getUserMedia to capture this device
-        navigator.webkitGetUserMedia(constraints, function (stream) {
-            console.log(stream.id, stream);
-        }, console.error);
-    }
-});
-
-function toggleAudio() {
-    const audioTracks = stream.getAudioTracks();
-    for (const track of audioTracks) {
-      track.enabled = !track.enabled;
-    }
-  }
-  
