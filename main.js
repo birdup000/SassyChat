@@ -108,8 +108,9 @@ io.on('connection', socket => {
 //addition Audio chat
 // Generate a random UUID and send the user to a new room with said UUID for video chat
 // Generate a random UUID and send the user to a new room with said UUID for video chat
+// Generate a random UUID and send the user to a new room with said UUID for video chat
 app.get('/videochat', (req, res) => {
-  const roomId = uuidV4()
+  const roomId = `${uuidV4()}-${req.user.socketId}`
   res.redirect(`/video${roomId}`)
 })
 
@@ -133,7 +134,7 @@ io.on('connection', socket => {
 
 // Generate a random UUID and send the user to a new room with said UUID for audio chat
 app.get('/audiochat', (req, res) => {
-  const roomId = uuidV4()
+  const roomId = `${uuidV4()}-${req.user.socketId}`
   res.redirect(`/audio${roomId}`)
 })
 
@@ -156,18 +157,11 @@ io.on('connection', socket => {
 })
 
 
-
 //FIXED
 app.use(function (req,res,next){
 	res.status(404).render("404");
 });
 
-if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', () => {
-    const audioGrid = document.getElementById('audio-grid');
-    // your code here
-  });
-}
 
 
 ///Also change here as well for showing what port server is running on
