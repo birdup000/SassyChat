@@ -107,54 +107,54 @@ io.on('connection', socket => {
 //video chatting merge
 //addition Audio chat
 // Generate a random UUID and send the user to a new room with said UUID for video chat
-// Generate a random UUID and send the user to a new room with said UUID for video chat
-// Generate a random UUID and send the user to a new room with said UUID for video chat
+
 app.get('/videochat', (req, res) => {
-  const roomId = `${uuidV4()}-${req.user.socketId}`
-  res.redirect(`/video${roomId}`)
-})
+  const roomId = `${uuidV4()}-${req.user.socketId}`;
+  res.redirect(`/video${roomId}`);
+});
 
 // Serve the video chat page
 app.get('/video:room', (req, res) => {
-  res.render('video', {roomId: req.params.room})
-})
+  res.render('video', { roomId: req.params.room });
+});
 
 // When someone connects to the video chat server
 io.on('connection', socket => {
   // When someone attempts to join the room
   socket.on('join-video-room', (roomId, userId) => {
-    socket.join(roomId) // Join the room
-    socket.broadcast.to(roomId).emit('user-connected', userId) // Tell everyone else in the room that we joined
+    socket.join(roomId); // Join the room
+    socket.broadcast.to(roomId).emit('user-connected', userId); // Tell everyone else in the room that we joined
     // Communicate the disconnection
     socket.on('disconnect', () => {
-      socket.broadcast.to(roomId).emit('user-disconnected', userId)
-    })
-  })
-})
+      socket.broadcast.to(roomId).emit('user-disconnected', userId);
+    });
+  });
+});
 
 // Generate a random UUID and send the user to a new room with said UUID for audio chat
 app.get('/audiochat', (req, res) => {
-  const roomId = `${uuidV4()}-${req.user.socketId}`
-  res.redirect(`/audio${roomId}`)
-})
+  const roomId = `${uuidV4()}-${req.user.socketId}`;
+  res.redirect(`/audio${roomId}`);
+});
 
 // Serve the audio chat page
 app.get('/audio:room', (req, res) => {
-  res.render('audio', { roomId: req.params.room })
-})
+  res.render('audio', { roomId: req.params.room });
+});
 
 // When someone connects to the audio chat server
 io.on('connection', socket => {
   // When someone attempts to join the room
   socket.on('join-audio-room', (roomId, userId) => {
-    socket.join(roomId) // Join the room
-    socket.broadcast.to(roomId).emit('user-connected', userId) // Tell everyone else in the room that we joined
+    socket.join(roomId); // Join the room
+    socket.broadcast.to(roomId).emit('user-connected', userId); // Tell everyone else in the room that we joined
     // Communicate the disconnection
     socket.on('disconnect', () => {
-      socket.broadcast.to(roomId).emit('user-disconnected', userId)
-    })
-  })
-})
+      socket.broadcast.to(roomId).emit('user-disconnected', userId);
+    });
+  });
+});
+
 
 
 //FIXED
