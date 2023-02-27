@@ -106,38 +106,50 @@ io.on('connection', socket => {
 });
 //video chatting merge
 //addition Audio chat
+// Generate a random UUID for video chat
 app.get('/videochat', (req, res) => {
-  const uuid = uuidV4()
-  res.redirect(`/video/${uuid}`)
+  const roomId = uuidV4()
+  res.redirect(`/video/${roomId}`)
 })
 
+// Serve the video chat page
 app.get('/video/:room', (req, res) => {
-  // Only allow access to the room if the user has the room code
-  const roomId = req.params.room
-  res.render('video', { roomId })
+  res.render('video', {roomId: req.params.room})
 })
 
+// Generate a random UUID for audio chat
 app.get('/audiochat', (req, res) => {
-  const uuid = uuidV4()
-  res.redirect(`/audio/${uuid}`)
+  const roomId = uuidV4()
+  res.redirect(`/audio/${roomId}`)
 })
 
+// Serve the audio chat page
 app.get('/audio/:room', (req, res) => {
-  // Only allow access to the room if the user has the room code
-  const roomId = req.params.room
-  res.render('audio', { roomId })
+  res.render('audio', {roomId: req.params.room})
 })
 
+// When someone connects to the server
 io.on('connection', socket => {
+  // When someone attempts to join the room
   socket.on('join-room', (roomId, userId) => {
-    socket.join(roomId)
-    socket.broadcast.to(roomId).emit('user-connected', userId)
-    
-    socket.on('disconnect', () => {
-      socket.broadcast.to(roomId).emit('user-disconnected', userId)
-    })
+      const room = io.sockets.adapter.rooms.get(roomId)
+      if (!room) {
+        socket.emit('room-not-found')
+        return
+      }
+      if (room.size >= 2) {
+        socket.emit('room-full')
+        return
+      }
+      socket.join(roomId)  // Join the room
+      socket.broadcast.to(roomId).emit('user-connected', userId) // Tell everyone else in the room that we joined
+      // Communicate the disconnection
+      socket.on('disconnect', () => {
+          socket.broadcast.to(roomId).emit('user-disconnected', userId)
+      })
   })
 })
+
 
 
 /// fixed
