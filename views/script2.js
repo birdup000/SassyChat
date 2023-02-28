@@ -17,7 +17,7 @@ navigator.mediaDevices.enumerateDevices()
     const constraints = { video: cams.length > 0, audio: mics.length > 0 };
     return navigator.mediaDevices.getUserMedia(constraints);
   })
-  .then(stream => localstream = stream)
+  .then(stream => localStream = stream)
   .catch(failed);
 
     addVideoStream(myVideo, stream) // Display our video to ourselves
