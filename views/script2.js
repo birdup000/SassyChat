@@ -9,11 +9,16 @@ myVideo.muted = true // Mute ourselves on our end so there is no feedback loop
 let localStream = null; // Create a variable to store the user's media stream
 
 // Access the user's video and audio
-navigator.mediaDevices.getUserMedia({
-    video: false || true,
-    audio: true
-}).then(stream => {
-    localStream = stream; // Store the user's media stream
+navigator.mediaDevices.enumerateDevices()
+  .then(devices => {
+    const cams = devices.filter(device => device.kind == "videoinput");
+    const mics = devices.filter(device => device.kind == "audioinput");
+
+    const constraints = { video: cams.length > 0, audio: mics.length > 0 };
+    return navigator.mediaDevices.getUserMedia(constraints);
+  })
+  .then(stream => localstream = stream)
+  .catch(failed);
 
     addVideoStream(myVideo, stream) // Display our video to ourselves
 
