@@ -10,7 +10,7 @@ let localStream = null; // Create a variable to store the user's media stream
 
 // Access the user's video and audio
 navigator.mediaDevices.getUserMedia({
-    video: false,
+    video: false || true,
     audio: true
 }).then(stream => {
     localStream = stream; // Store the user's media stream
