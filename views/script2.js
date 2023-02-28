@@ -1,39 +1,32 @@
-// Audio Calling Portion ONLY
-// will make interjection on the both audio and video toggle
-// Adding Audio backend
-
+//videocalling
 const socket = io('/') // Create our socket
-const audioGrid = document.getElementById('audio-grid') // Find the Audio-Grid element
- 
-const myPeer = new Peer() // Creating a peer element which represents the current user
-const myAudio = document.createElement('audio') // Create a new audio tag to show our audio
-myAudio.id = 'my-audio'; // Set the ID of the audio element
+const videoGrid = document.getElementById('video-grid') // Find the Video-Grid element
 
-// Access the user's just audio
+const myPeer = new Peer() // Creating a peer element which represents the current user
+const myVideo = document.createElement('video') // Create a new video tag to show our video
+myVideo.muted = true // Mute ourselves on our end so there is no feedback loop
+
+let localStream = null; // Create a variable to store the user's media stream
+
+// Access the user's video and audio
 navigator.mediaDevices.getUserMedia({
-    audio: true,
-    video: false
+    video: false,
+    audio: true
 }).then(stream => {
-    console.log('Got Audio Stram', stream)
-    myAudio.srcObject = stream // Set our audio to use our local audio stream
-    myAudio.muted = true // Mute our own audio so we don't hear ourselves
-    myAudio.play() // Start playing our audio
-    .catch(error => {
-        console.error('Error getting audio stream:', error)
-      })
+    localStream = stream; // Store the user's media stream
+
+    addVideoStream(myVideo, stream) // Display our video to ourselves
 
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
-        call.answer(stream) // Stream them our audio
-        const audio = document.createElement('audio') // Create an audio tag for them
-        audio.id = call.peer; // Set the ID of the audio element to the peer ID
-        call.on('stream', userAudioStream => { // When we recieve their stream
-            addAudioStream(audio, userAudioStream) // Display their audio to the screen
+        call.answer(stream) // Stream them our video/audio
+        const video = document.createElement('video') // Create a video tag for them
+        call.on('stream', userVideoStream => { // When we recieve their stream
+            addVideoStream(video, userVideoStream) // Display their video to the screen
         })
     })
 
     socket.on('user-connected', userId => { // If a new user connect
         connectToNewUser(userId, stream) 
-        console.log('connectToNewUser called with userId:', userId);
     })
 })
 
@@ -43,23 +36,29 @@ myPeer.on('open', id => { // When we first open the app, have us join a room
 
 function connectToNewUser(userId, stream) { // This runs when someone joins our room
     const call = myPeer.call(userId, stream) // Call the user who just joined
-    // Add their audio
-    const audio = document.createElement('audio') 
-    audio.id = call.peer; // Set the ID of the audio element to the peer ID
-    call.on('stream', userAudioStream => {
-        addAudioStream(audio, userAudioStream)
+    // Add their video
+    const video = document.createElement('video') 
+    call.on('stream', userVideoStream => {
+        addVideoStream(video, userVideoStream)
     })
-    // If they leave, remove their audio
+    // If they leave, remove their video
     call.on('close', () => {
-        audio.remove()
+        video.remove()
     })
 }
 
-function addAudioStream(audio, stream) {
-    audio.srcObject = stream;
-    audio.addEventListener('loadedmetadata', () => {
-        audio.play();
-    });
-    audioGrid.appendChild(audio);
+function addVideoStream(video, stream) {
+    video.srcObject = stream 
+    video.addEventListener('loadedmetadata', () => { // Play the video as it loads
+        video.play()
+    })
+    videoGrid.append(video) // Append video element to videoGrid
 }
 
+function toggleVideo() {
+    const videoTrack = localStream.getVideoTracks()[0];
+    if (videoTrack.enabled) {
+        videoTrack.enabled = false;
+      }
+    }
+}
